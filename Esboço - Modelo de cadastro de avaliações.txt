@@ -1,0 +1,64 @@
+EvaluationModel
+	*Number - idusercreated
+	*List 	- Category |LabelValue| (select * from TB_evaluationcategory)
+	*Number - Select Account
+	Number 	- idevaluationorigin
+	String	- dsevaluation
+	List	- question |QuestionModel| (select * from TB_question)
+	String	- evaluationversion (default A)
+	
+QuestionModel
+	*List 	- Type |LabelValue| (select * from TB_questiontype)
+	String	- dsquestion
+	Bool 	- nullfied
+	
+EvaluationQuestionModel
+	ID		- FK_idquestion
+	ID		- FK_idevaluationversion
+	
+INSERT INTO TB_evaluation
+	(
+		[FK_idusercreated]
+	   ,[FK_idevaluationcategory]
+	   ,[FK_idaccount]
+	   ,[FK_idevaluationorigin]
+	   ,[dsevaluation])
+ VALUES
+	(
+		1
+	   ,2
+	   ,1
+	   ,1
+	   ,'Avaliação de Teste'
+	);
+	
+INSERT INTO TB_evaluationversion
+	(
+		 FK_idevaluation
+		,dsevaluationversion)
+ VALUES
+	(
+		1
+	   ,'A'
+	)
+
+insert into TB_question (FK_idquestiontype, dsquestion, nullified) values (2, '', 0);
+insert into TB_question (FK_idquestiontype, dsquestion, nullified) values (2, '', 0);
+insert into TB_question (FK_idquestiontype, dsquestion, nullified) values (2, '', 0);
+
+insert into TB_evaluationquestion(FK_idquestion, FK_idevaluationversion, sequence, nullfied, totalrating) values (1, 1, 1, 0, 3)
+insert into TB_evaluationquestion(FK_idquestion, FK_idevaluationversion, sequence, nullfied, totalrating) values (2, 1, 2, 0, 3)
+insert into TB_evaluationquestion(FK_idquestion, FK_idevaluationversion, sequence, nullfied, totalrating) values (3, 1, 3, 0, 3)
+
+insert into TB_evaluationstudent (FK_idevaluationversion, FK_iduser, FK_idevaluation) values (1,2,1)
+insert into TB_evaluationstudent (FK_idevaluationversion, FK_iduser, FK_idevaluation) values (1,3,1)
+
+insert into TB_evaluationdiscipline (FK_idevaluation, FK_iddiscipline) values (1, 2)
+insert into TB_evaluationdiscipline (FK_idevaluation, FK_iddiscipline) values (1, 3)
+
+insert into TB_group(FK_idconnectsoftware, FK_ideducationlevel, FK_idaccount, dsgroup, idgroupconnectsoftware, yeargroup, enabled)values(1, 3, 1, 'EM3A', 'EM3A', 2021, 1);
+insert into TB_group(FK_idconnectsoftware, FK_ideducationlevel, FK_idaccount, dsgroup, idgroupconnectsoftware, yeargroup, enabled)values(1, 3, 1, 'EM3B', 'EM3B', 2021, 1);
+
+insert into TB_groupevaluation (FK_idgroup, FK_idevaluation) values (1,1);
+insert into TB_groupevaluation (FK_idgroup, FK_idevaluation) values (2,1);
+

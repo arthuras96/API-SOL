@@ -4,6 +4,8 @@ using Repository;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -765,6 +767,27 @@ namespace Functions
             Random rnd = new Random(GetRandomSeed());
             double rndvalue = Double.Parse((rnd.Next(startrange, endrange)).ToString("N2"));
             return Convert.ToInt32(rndvalue);
+        }
+
+        public bool CreateImageFromHtml(string path, string html, string extension)
+        {
+            try
+            { 
+                Image image = TheArtOfDev.HtmlRenderer.WinForms.HtmlRender.RenderToImage(html);
+
+                if (extension == "jpeg")
+                    image.Save(path, ImageFormat.Jpeg);
+                else if (extension == "png")
+                    image.Save(path, ImageFormat.Png);
+                else
+                    return false;
+
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
         }
     }
 }

@@ -128,6 +128,7 @@
     <Compile Include="Authenticate\Models\PermissionModel.cs" />
     <Compile Include="Authenticate\Models\UserModel.cs" />
     <Compile Include="Evaluation\EvaluationService.cs" />
+    <Compile Include="Evaluation\Models\EvaluationEmailModel.cs" />
     <Compile Include="Evaluation\Models\EvaluationImageModel.cs" />
     <Compile Include="Evaluation\Models\EvaluationModel.cs" />
     <Compile Include="Evaluation\Models\EvaluationQuestionModel.cs" />

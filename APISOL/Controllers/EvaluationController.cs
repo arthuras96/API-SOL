@@ -130,5 +130,14 @@ namespace APISOL.Controllers
             var evaluations = service.PutStudentGrade(evaluation, selectedAccount, iduser, idevaluation);
             return Ok(evaluations);
         }
+
+        [AllowAnonymous]
+        [HttpGet]
+        public IHttpActionResult SendEmails()
+        {
+            EvaluationService service = new EvaluationService();
+            service.SendEmails();
+            return Ok();
+        }
     }
 }
